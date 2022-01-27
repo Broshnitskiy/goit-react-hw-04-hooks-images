@@ -19,5 +19,5 @@ export const ImageGallery = ({ gallery, imageName, toggleModal }) => {
 };
 
 ImageGallery.propTypes = {
-  id: PropTypes.string.isRequired,
+  gallery: PropTypes.array.isRequired,
 };
