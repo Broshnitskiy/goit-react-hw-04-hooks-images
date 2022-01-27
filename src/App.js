@@ -12,16 +12,6 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Scroll from "react-scroll";
 
 function App() {
-  // state = {
-  //   imageName: "",
-  //   gallery: [],
-  //   page: null,
-  //   error: null,
-  //   isLoading: false,
-  //   showButton: false,
-  //   showModal: false,
-  //   bigImgUrl: "",
-  // };
   const [imageName, setImageName] = useState("");
   const [gallery, setGallery] = useState([]);
   const [page, setPage] = useState(null);
@@ -31,23 +21,20 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [bigImgUrl, setBigImgUrl] = useState("");
 
+  const scroll = Scroll.animateScroll;
+
   const handleFormSubmit = (inputImageName) => {
     setImageName(inputImageName);
     setPage(1);
-    // this.setState({ imageName, page: 1 });
+
+    scroll.scrollToTop();
   };
 
-  const handleClick = async () => {
+  const handleClick = () => {
     setPage((prevPage) => prevPage + 1);
-    // this.setState((prevState) => {
-    //   return {
-    //     page: prevState.page + 1,
-    //   };
-    // });
-    let scroll = Scroll.animateScroll;
+
     scroll.scrollMore(400, {
       duration: 1000,
-
       smooth: "easeInOutQuint",
     });
   };
@@ -55,10 +42,6 @@ function App() {
   const toggleModal = (imgUrl) => {
     setShowModal((prevValue) => !prevValue);
     setBigImgUrl(imgUrl);
-    // this.setState(({ showModal }) => ({
-    //   showModal: !showModal,
-    //   bigImgUrl: imgUrl,
-    // }));
   };
 
   useEffect(() => {
@@ -76,7 +59,7 @@ function App() {
             "Sorry, there are no images matching your search query. Please try again."
           );
           setShowButton(false);
-          // this.setState({ showButton: false });
+
           return;
         }
         if (page * 12 >= data.totalHits) {
@@ -84,7 +67,6 @@ function App() {
             "We're sorry, but you've reached the end of search results."
           );
           setShowButton(false);
-          // this.setState({ showButton: false });
         }
         page === 1
           ? setGallery(data.hits)
@@ -93,51 +75,12 @@ function App() {
             });
       } catch (error) {
         setError(error);
-        // this.setState({ error });
       } finally {
         setIsLoading(false);
-        // this.setState({ isLoading: false });
       }
     }
     fetchImages();
   }, [imageName, page]);
-
-  // async componentDidUpdate(prevProps, prevState) {
-  //   const prevName = prevState.imageName;
-  //   const newName = this.state.imageName;
-  //   const { page } = this.state;
-
-  //   if (prevName !== newName || prevState.page !== this.state.page) {
-  //     this.setState({ isLoading: true });
-  //     this.setState({ showButton: true });
-  //     try {
-  //       const data = await getImages(newName.trim(), page);
-
-  //       if (data.hits.length === 0) {
-  //         toast.error(
-  //           "Sorry, there are no images matching your search query. Please try again."
-  //         );
-  //         this.setState({ showButton: false });
-  //         return;
-  //       }
-  //       if (page * 12 >= data.totalHits) {
-  //         toast.warn(
-  //           "We're sorry, but you've reached the end of search results."
-  //         );
-  //         this.setState({ showButton: false });
-  //       }
-  //       page === 1
-  //         ? this.setState({ gallery: data.hits })
-  //         : this.setState((prevState) => {
-  //             return { gallery: [...prevState.gallery, ...data.hits] };
-  //           });
-  //     } catch (error) {
-  //       this.setState({ error });
-  //     } finally {
-  //       this.setState({ isLoading: false });
-  //     }
-  //   }
-  // }
 
   return (
     <div className={"App"}>

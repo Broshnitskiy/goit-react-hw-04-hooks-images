@@ -6,14 +6,6 @@ import PropTypes from "prop-types";
 const modalRoot = document.querySelector("#modal-root");
 
 export const Modal = ({ onClose, imgUrl, imageName, children }) => {
-  // componentDidMount() {
-  //   window.addEventListener("keydown", this.handleKeyDown);
-  // }
-
-  // componentWillUnmount() {
-  //   window.removeEventListener("keydown", this.handleKeyDown);
-  // }
-
   const handleBackdropClick = (event) => {
     if (event.currentTarget === event.target) {
       onClose();

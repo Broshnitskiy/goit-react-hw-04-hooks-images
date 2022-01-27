@@ -5,13 +5,9 @@ import PropTypes from "prop-types";
 
 export const Searchbar = ({ onSubmit }) => {
   const [inputValue, setInputValue] = useState("");
-  // state = {
-  //   inputValue: "",
-  // };
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
-    // this.setState({ inputValue: e.target.value });
   };
 
   const handleSubmit = (e) => {
@@ -24,7 +20,6 @@ export const Searchbar = ({ onSubmit }) => {
 
     onSubmit(inputValue);
     setInputValue("");
-    // this.setState({ inputValue: "" });
   };
 
   return (
