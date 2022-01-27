@@ -1,0 +1,32 @@
+.App {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
+  padding-bottom: 24px;
+}
+
+.ModalButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ModalButton:hover,
+.ModalButton:focus {
+  color: blue;
+  border-color: red;
+}
